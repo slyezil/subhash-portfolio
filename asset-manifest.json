@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/subhash-portfolio/static/css/main.dbdb9624.css",
+    "main.js": "/subhash-portfolio/static/js/main.25a5b573.js",
+    "index.html": "/subhash-portfolio/index.html",
+    "static/media/example-post.md": "/subhash-portfolio/static/media/example-post.e7f73f8ac1b874a3cd31.md",
+    "main.dbdb9624.css.map": "/subhash-portfolio/static/css/main.dbdb9624.css.map",
+    "main.25a5b573.js.map": "/subhash-portfolio/static/js/main.25a5b573.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dbdb9624.css",
+    "static/js/main.25a5b573.js"
+  ]
+}
