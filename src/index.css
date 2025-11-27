@@ -10,3 +10,8 @@ html,body,#root{height:100%;margin:0;background:var(--bg);color:#e6eef6;font-fam
 .nav a{margin-left:14px}
 .blog-list li{margin:12px 0}
 .post-content{line-height:1.6;color:#d9e7ff}
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
