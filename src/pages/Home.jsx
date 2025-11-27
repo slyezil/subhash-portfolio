@@ -1,4 +1,5 @@
 import React from 'react';
+import FuturisticHero from '../components/FuturisticHero';
 import Header from '../components/Header';
 import ProjectCard from '../components/ProjectCard';
 import { SITE } from '../data/siteConfig';
@@ -14,6 +15,9 @@ export default function Home(){
     <div>
       <Header />
       <div className="container">
+        <section style={{marginBottom:20}}>
+          <FuturisticHero height={480} />
+        </section>
         <div className="card">
           <h1 style={{margin:0}}>{SITE.name}</h1>
           <div style={{color:'var(--muted)'}}>{SITE.title} · {SITE.bio}</div>
