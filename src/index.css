@@ -1,6 +1,39 @@
-:root{--bg:#0b0f17;--card:#0f1722;--muted:#9aa4b2;--accent:#7dd3fc}
+:root{
+  --bg:#0b0f17;
+  --card:#0f1722;
+  --muted:#9aa4b2;
+  --accent:#7dd3fc;
+  --text:#e6eef6;
+  color-scheme: dark;
+}
+
+:root[data-theme='light']{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#2563eb;
+  --text:#111827;
+  color-scheme: light;
+}
+
+:root[data-theme='dark']{
+  --bg:#0b0f17;
+  --card:#0f1722;
+  --muted:#9aa4b2;
+  --accent:#7dd3fc;
+  --text:#e6eef6;
+  color-scheme: dark;
+}
+
 *{box-sizing:border-box}
-html,body,#root{height:100%;margin:0;background:var(--bg);color:#e6eef6;font-family:Inter,ui-sans-serif,system-ui}
+html,body,#root{
+  height:100%;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui;
+  transition: background 0.2s ease, color 0.2s ease;
+}
 .container{max-width:1000px;margin:40px auto;padding:20px}
 .header{display:flex;align-items:center;justify-content:space-between}
 .header .name{font-size:1.4rem;font-weight:700}

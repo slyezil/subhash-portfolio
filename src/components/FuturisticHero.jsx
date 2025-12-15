@@ -10,9 +10,10 @@ import springLogo from '../assets/tech/springboot.png';
 import tsLogo from '../assets/tech/typescript.png';
 import pgLogo from '../assets/tech/postgresql.png';
 import dockerLogo from '../assets/tech/docker.png';
+import useTheme from '../hooks/useTheme';
 
 
-function HologramSphere({radius=1.2,segments=64,wireframe=false}){
+function HologramSphere({radius=1.2,segments=64,wireframe=false,isLight=false}){
 const ref = useRef();
 useFrame((state,delta)=>{ ref.current.rotation.y += delta*0.25; ref.current.rotation.x += delta*0.06 });
 return (
@@ -26,28 +27,35 @@ roughness={0.1}
 />
 {wireframe && <lineSegments>
 <wireframeGeometry args={[new THREE.SphereGeometry(radius,segments,segments)]}/>
-<lineBasicMaterial toneMapped={false} color="#7dd3fc" linewidth={1} />
+<lineBasicMaterial toneMapped={false} color={isLight ? "#d4af37" : "#7dd3fc"} linewidth={1} />
 </lineSegments>}
 </mesh>
 );
 }
 
 
-function ParticleField({count=210,spread=8}){
-const geom = useMemo(()=>{
+function ParticleField({count=210,spread=8,isLight=false}){
+  const geom = useMemo(()=>{
 const g = new THREE.BufferGeometry();
 const pos = new Float32Array(count*3);
 for(let i=0;i<count;i++){ pos[i*3]=(Math.random()-0.5)*spread; pos[i*3+1]=(Math.random()-0.5)*spread; pos[i*3+2]=(Math.random()-0.5)*spread }
 g.setAttribute('position',new THREE.BufferAttribute(pos,3));
 return g;
-},[count,spread]);
-const mat = useMemo(()=> new THREE.PointsMaterial({size:0.025,opacity:0.9,transparent:true}),[]);
+  },[count,spread]);
+  const mat = useMemo(()=> {
+    return new THREE.PointsMaterial({
+      size:0.04,
+      opacity:0.9,
+      transparent:true,
+      color: isLight ? '#d4af37' : '#bfefff'
+    });
+  },[isLight]);
 const ref = useRef();
 useFrame((s,dt)=>{ if(ref.current) ref.current.rotation.y += dt*0.08 });
 return <points ref={ref} geometry={geom} material={mat} />
 }
 
-function TechOrbitIcons({ radius = 2.2, speed = 0.4 }) {
+function TechOrbitIcons({ radius = 2.2, speed = 0.4, isLight = false }) {
   const group = useRef();
 
   const icons = useMemo(() => [
@@ -88,7 +96,7 @@ function TechOrbitIcons({ radius = 2.2, speed = 0.4 }) {
               style={{
                 width: 36,
                 height: 36,
-                filter: "drop-shadow(0 0 8px #00eaff)",
+                filter: `drop-shadow(0 0 8px ${isLight ? "#d4af37" : "#00eaff"})`,
                 animation: "float 3s ease-in-out infinite"
               }}
             />
@@ -101,19 +109,21 @@ function TechOrbitIcons({ radius = 2.2, speed = 0.4 }) {
 
 
 export default function FuturisticHero({width='100%',height=420}){
+const { theme } = useTheme();
+const isLight = theme === 'light';
 return (
 <div style={{width,height,display:'block',borderRadius:12,overflow:'hidden'}}>
 <Canvas camera={{position:[0,0,6],fov:50}}>
 <ambientLight intensity={0.6} />
 <directionalLight position={[5,5,5]} intensity={0.8} />
-<HologramSphere wireframe={true} />
-<ParticleField />
-<TechOrbitIcons radius={2.2} speed={0.25} />
+<HologramSphere wireframe={true} isLight={isLight} />
+<ParticleField isLight={isLight} />
+<TechOrbitIcons radius={2.2} speed={0.25} isLight={isLight} />
 <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
 <Html position={[0,-1.6,0]} center>
-<div style={{color:'#bfefff',textAlign:'center',fontFamily:'Inter,sans-serif'}}>
+<div style={{color:'#2563eb',textAlign:'center',fontFamily:'Inter,sans-serif'}}>
 {/* <div style={{fontSize:22,fontWeight:700}}>Subhash Chandra Bose Lavu</div> */}
-<div style={{color:'#ebeff3ff',marginTop:10}}> My Tech Sphere </div>
+ <div style={{color: isLight ? "#d4af37" : "#ebeff3ff", marginTop:10}}> My Tech Sphere </div>
 </div>
 </Html>
 </Canvas>
