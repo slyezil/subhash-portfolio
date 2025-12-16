@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/subhash-portfolio/static/css/main.1fa614bc.css",
-    "main.js": "/subhash-portfolio/static/js/main.23c5e71e.js",
+    "main.js": "/subhash-portfolio/static/js/main.44034cf3.js",
     "static/media/postgresql.png": "/subhash-portfolio/static/media/postgresql.7a61ca6d9cde9ac92790.png",
     "static/media/springboot.png": "/subhash-portfolio/static/media/springboot.0d2864a8d31b36e39fb1.png",
     "static/media/react.png": "/subhash-portfolio/static/media/react.b9a14f34c7e7ac1b8ed6.png",
@@ -11,10 +11,10 @@
     "index.html": "/subhash-portfolio/index.html",
     "static/media/example-post.md": "/subhash-portfolio/static/media/example-post.e7f73f8ac1b874a3cd31.md",
     "main.1fa614bc.css.map": "/subhash-portfolio/static/css/main.1fa614bc.css.map",
-    "main.23c5e71e.js.map": "/subhash-portfolio/static/js/main.23c5e71e.js.map"
+    "main.44034cf3.js.map": "/subhash-portfolio/static/js/main.44034cf3.js.map"
   },
   "entrypoints": [
     "static/css/main.1fa614bc.css",
-    "static/js/main.23c5e71e.js"
+    "static/js/main.44034cf3.js"
   ]
 }
