@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import FuturisticHero from '../components/FuturisticHero';
 import Header from '../components/Header';
 import ProjectCard from '../components/ProjectCard';
@@ -11,6 +11,29 @@ const PROJECTS = [
 ];
 
 export default function Home(){
+  const [cfRating,setCfRating] = useState(0);
+
+  useEffect(()=>{
+    const target = 1683;
+    const duration = 1500; // ms counting phase
+    const cycle = 5000; // total ms per cycle (count up + hold)
+
+    const start = Date.now();
+    const id = setInterval(()=>{
+      const elapsed = Date.now() - start;
+      const phase = elapsed % cycle;
+
+      if (phase <= duration){
+        const progress = phase / duration;
+        setCfRating(Math.round(target * progress));
+      } else {
+        setCfRating(target);
+      }
+    },50);
+
+    return ()=>clearInterval(id);
+  },[]);
+
   return (
     <div>
       <Header />
@@ -30,6 +53,17 @@ export default function Home(){
           <h2 style={{marginTop:20}}>Projects</h2>
           <div className="projects">
             {PROJECTS.map((p,i)=>(<ProjectCard key={i} p={p}/>))}
+          </div>
+        </section>
+
+        <section>
+          <h2 style={{marginTop:20}}>Codeforces</h2>
+          <div className="card" style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+            <div>
+              <div style={{fontSize:14,color:'var(--muted)'}}>Max Rating</div>
+              <div style={{fontSize:28,fontWeight:700}}>{cfRating}</div>
+            </div>
+            <div style={{fontSize:14,color:'var(--muted)'}}>from 0 → 1683</div>
           </div>
         </section>
 

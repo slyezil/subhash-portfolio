@@ -11,6 +11,7 @@ import tsLogo from '../assets/tech/typescript.png';
 import pgLogo from '../assets/tech/postgresql.png';
 import dockerLogo from '../assets/tech/docker.png';
 import useTheme from '../hooks/useTheme';
+import SpinningPyramids from './SpinningPyramids';
 
 
 function HologramSphere({radius=1.2,segments=64,wireframe=false,isLight=false}){
@@ -96,7 +97,7 @@ function TechOrbitIcons({ radius = 2.2, speed = 0.4, isLight = false }) {
               style={{
                 width: 36,
                 height: 36,
-                filter: `drop-shadow(0 0 8px ${isLight ? "#d4af37" : "#00eaff"})`,
+                filter: `drop-shadow(0 0 3px ${isLight ? "#d4af37" : "#00eaff"})`,
                 animation: "float 3s ease-in-out infinite"
               }}
             />
@@ -111,6 +112,9 @@ function TechOrbitIcons({ radius = 2.2, speed = 0.4, isLight = false }) {
 export default function FuturisticHero({width='100%',height=420}){
 const { theme } = useTheme();
 const isLight = theme === 'light';
+if (isLight){
+return <SpinningPyramids width={width} height={height} />;
+}
 return (
 <div style={{width,height,display:'block',borderRadius:12,overflow:'hidden'}}>
 <Canvas camera={{position:[0,0,6],fov:50}}>
