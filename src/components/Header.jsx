@@ -15,6 +15,7 @@ export default function Header() {
         <Link className="link" to="/blog">Blog</Link>
         <a className="link" href={SITE.github} target="_blank" rel="noreferrer">GitHub</a>
         <a className="link" href={`mailto:${SITE.email}`}>Email</a>
+        <a className="link" href={SITE.resume} download target="_blank"rel="noopener noreferrer"> Download Resume</a>
         <ThemeToggle />
       </nav>
     </header>

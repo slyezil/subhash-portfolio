@@ -127,7 +127,7 @@ return (
 <Html position={[0,-1.6,0]} center>
 <div style={{color:'#2563eb',textAlign:'center',fontFamily:'Inter,sans-serif'}}>
 {/* <div style={{fontSize:22,fontWeight:700}}>Subhash Chandra Bose Lavu</div> */}
- <div style={{color: isLight ? "#d4af37" : "#ebeff3ff", marginTop:10}}> My Tech Sphere </div>
+ {/* <div style={{color: isLight ? "#d4af37" : "#ebeff3ff", marginTop:10}}> My Tech Sphere </div> */}
 </div>
 </Html>
 </Canvas>

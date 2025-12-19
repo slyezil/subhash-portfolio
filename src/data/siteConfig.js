@@ -5,5 +5,7 @@ export const SITE = {
   skills: ['Java','Spring Boot','React.js','TypeScript'],
   github: 'https://github.com/slyezil',
   email: 'lavuscb@gmail',
+  resume: "/assets/resume/Subhash_Resume_v1.pdf",
+  codeforces: 'https://codeforces.com/profile/slyezil',
   profileImage: null // placeholder
 };

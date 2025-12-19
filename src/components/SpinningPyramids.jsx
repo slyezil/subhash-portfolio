@@ -56,12 +56,13 @@ export default function SpinningPyramids({ width = "100%", height = 320 }) {
         shadows
         camera={{ position: [0, 1.5, 4], fov: 45 }}
       >
-        <color attach="background" args={["#020617"]} />
+        <color attach="background" args={["#f5f7fb"]} />
 
-        <ambientLight intensity={0.4} />
+        <ambientLight intensity={1.6} />
         <directionalLight
-          position={[3, 4, 2]}
-          intensity={1.1}
+          position={[3, 4, 0.5]}
+          intensity={1.4}
+          castShadow
         />
 
         {/* Top made of two pyramids base‑to‑base */}
