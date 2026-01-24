@@ -2,6 +2,7 @@ import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+import useTheme from "../hooks/useTheme";
 
 function Pyramid({ inverted = false, color = "#d4af37" }) {
   const groupRef = useRef();
@@ -30,7 +31,7 @@ function Pyramid({ inverted = false, color = "#d4af37" }) {
           roughness={0.25}
         />
       </mesh>
-      
+
       {/* Wireframe edges */}
       <lineSegments>
         <edgesGeometry args={[wireframeGeometry]} />
@@ -40,49 +41,71 @@ function Pyramid({ inverted = false, color = "#d4af37" }) {
   );
 }
 
-export default function SpinningPyramids({ width = "100%", height = 320 }) {
+export default function SpinningPyramids({ width = "100%", height = 400, quote = null }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
+  const accentColor = isDark ? "#38bdf8" : "#0284c7";
+  const edgeColor = isDark ? "#0ea5e9" : "#0369a1";
+
   return (
     <div
       style={{
         width,
         height,
-        borderRadius: 12,
+        borderRadius: 24,
         overflow: "hidden",
-        // Solid background so the full bottom pyramid is visible
-        background: "#020617",
+        background: "var(--bg-subtle)",
+        position: "relative",
       }}
     >
       <Canvas
         shadows
         camera={{ position: [0, 1.5, 4], fov: 45 }}
       >
-        <color attach="background" args={["#f5f7fb"]} />
-
-        <ambientLight intensity={1.6} />
+        <ambientLight intensity={isDark ? 0.8 : 1.5} />
         <directionalLight
           position={[3, 4, 0.5]}
           intensity={1.4}
           castShadow
         />
 
-        {/* Top made of two pyramids base‑to‑base */}
         <group>
-          <Pyramid />
-          <Pyramid inverted />
+          <Pyramid color={accentColor} />
+          <Pyramid inverted color={accentColor} />
         </group>
-
-        {/* Soft ground shadow hint */}
-        {/* <mesh
-          rotation={[-Math.PI / 2, 0, 0]}
-          position={[0, -0.9, 0]}
-          receiveShadow
-        >
-          <circleGeometry args={[3, 32]} />
-          <meshStandardMaterial color="#020617" roughness={0.9} />
-        </mesh> */}
 
         <OrbitControls enablePan={false} enableZoom={false} autoRotate />
       </Canvas>
+
+      {quote && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: "24px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            textAlign: "center",
+            padding: "16px 32px",
+            borderRadius: "16px",
+            background: "rgba(var(--bg-rgb), 0.6)",
+            backdropFilter: "blur(8px)",
+            maxWidth: "90%",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "1.1rem",
+              fontWeight: 600,
+              fontStyle: "italic",
+              color: "var(--text-primary)",
+              margin: 0,
+            }}
+          >
+            "{quote}"
+          </p>
+        </div>
+      )}
     </div>
   );
 }

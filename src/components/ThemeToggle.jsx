@@ -8,19 +8,12 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
+      className="theme-btn"
       onClick={() => setTheme(nextTheme)}
-      style={{
-        padding: "8px 12px",
-        borderRadius: 999,
-        background: "var(--card)",
-        color: "var(--text)",
-        border: "1px solid var(--accent)",
-        cursor: "pointer",
-        marginLeft: 14
-      }}
       aria-label={`Activate ${nextTheme} mode`}
     >
-      {theme === "dark" ? "☀ Light" : "🌙 Dark"}
+      {theme === "dark" ? "☀" : "🌙"}
+      <span style={{ fontSize: '0.85rem' }}>{theme === "dark" ? "Light" : "Dark"}</span>
     </button>
   );
 }

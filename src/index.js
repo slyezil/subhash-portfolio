@@ -6,7 +6,7 @@ import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/subhash-portfolio">
+    <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
