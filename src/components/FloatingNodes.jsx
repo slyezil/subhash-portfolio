@@ -76,8 +76,11 @@ function NodeNetwork() {
 
             // 3. Boundary Wrap-around/Recovery
             if (positions[iy] > 6) positions[iy] = -6;
-            if (positions[ix] > 7) positions[ix] = -7;
-            if (positions[ix] < -7) positions[ix] = 7;
+            if (positions[iy] < -6) positions[iy] = 6;
+            if (positions[ix] > 8) positions[ix] = -8;
+            if (positions[ix] < -8) positions[ix] = 8;
+            if (positions[iz] > 5) positions[iz] = -5;
+            if (positions[iz] < -5) positions[iz] = 5;
         }
         ref.current.geometry.attributes.position.needsUpdate = true;
     });
