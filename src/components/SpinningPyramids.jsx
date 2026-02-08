@@ -79,26 +79,13 @@ export default function SpinningPyramids({ width = "100%", height = 400, quote =
       </Canvas>
 
       {quote && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: "24px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            textAlign: "center",
-            padding: "16px 32px",
-            borderRadius: "16px",
-            background: "rgba(var(--bg-rgb), 0.6)",
-            backdropFilter: "blur(8px)",
-            maxWidth: "90%",
-          }}
-        >
+        <div className="pyramid-quote">
           <p
             style={{
               fontSize: "1.1rem",
               fontWeight: 600,
               fontStyle: "italic",
-              color: "var(--text-primary)",
+              color: "var(--text)",
               margin: 0,
             }}
           >

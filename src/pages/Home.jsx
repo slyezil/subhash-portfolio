@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import FuturisticHero from '../components/FuturisticHero';
 import SpinningPyramids from '../components/SpinningPyramids';
 import FloatingNodes from '../components/FloatingNodes';
@@ -7,9 +8,9 @@ import ProjectCard from '../components/ProjectCard';
 import { SITE } from '../data/siteConfig';
 
 const PROJECTS = [
-  { title: 'Project One', desc: 'A sophisticated dashboard built with React and D3.js.', link: '#' },
-  { title: 'Project Two', desc: 'Secure and scalable API backend using Spring Boot.', link: '#' },
-  { title: 'Project Three', desc: 'Interactive 3D visualization platform.', link: '#' }
+  { title: 'AgentFlow', desc: 'A Java-based memory layer for LLMs to manage conversation context.', link: '/post/building-agentflow' },
+  { title: 'SyncSpace', desc: 'Real-time collaborative code editor with Operational Transformation.', link: '#' },
+  { title: 'VectorVault', desc: 'High-performance vector database for RAG applications.', link: '#' }
 ];
 
 export default function Home() {
@@ -76,8 +77,8 @@ export default function Home() {
 
         {/* Codeforces / Stats */}
         <section className="animate-in" style={{ animationDelay: '0.3s' }}>
-          <h2 className="section-title">Performance</h2>
-          <div className="glass-card" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px' }}>
+          <h2 className="section-title">Competitive Programming</h2>
+          <div className="glass-card" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', gap: '40px', textAlign: 'center' }}>
             <div>
               <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '8px' }}>Codeforces Rating</div>
               <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--accent)' }}>{cfRating}</div>
@@ -88,10 +89,6 @@ export default function Home() {
             <div>
               <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '8px' }}>Global Rank</div>
               <div style={{ fontSize: '3rem', fontWeight: 800 }}>Top 5%</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '8px' }}>Contributions</div>
-              <div style={{ fontSize: '3rem', fontWeight: 800 }}>500+</div>
             </div>
           </div>
         </section>
@@ -106,7 +103,11 @@ export default function Home() {
               <div key={i} className="glass-card" style={{ margin: 0 }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '12px' }}>{p.title}</h3>
                 <p style={{ color: 'var(--text-muted)', marginBottom: '20px', lineHeight: '1.5' }}>{p.desc}</p>
-                <a className="link" href={p.link}>Case Study →</a>
+                {p.link.startsWith('/') ? (
+                  <Link className="link" to={p.link}>Case Study →</Link>
+                ) : (
+                  <a className="link" href={p.link} target={p.link !== '#' ? "_blank" : undefined} rel={p.link !== '#' ? "noopener noreferrer" : undefined}>Case Study →</a>
+                )}
               </div>
             ))}
           </div>
