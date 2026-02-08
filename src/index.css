@@ -34,7 +34,9 @@
   padding: 0;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   background: var(--bg);
   color: var(--text);
@@ -43,7 +45,11 @@ html, body, #root {
   scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, .name {
+h1,
+h2,
+h3,
+h4,
+.name {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -133,7 +139,7 @@ h1, h2, h3, h4, .name {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 
@@ -159,8 +165,15 @@ button.theme-btn:hover {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-in {
@@ -184,4 +197,229 @@ button.theme-btn:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* Blog Styles */
+.blog-layout {
+  max-width: 720px;
+  /* Medium's standard width is about 680-720px for content */
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.blog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blog-item {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--card-border);
+  display: block;
+}
+
+.blog-item.animate-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.blog-item:last-child {
+  border-bottom: none;
+}
+
+.blog-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 1.3;
+}
+
+.blog-title:hover {
+  color: var(--accent);
+}
+
+.blog-desc {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Pyramid Quote Styles */
+.pyramid-quote {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 16px 32px;
+  border-radius: 16px;
+  background: rgba(var(--bg-rgb), 0.6);
+  backdrop-filter: blur(8px);
+  max-width: 90%;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .pyramid-quote {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: transparent;
+    /* Remove background on mobile if desired, or keep it simple */
+    padding: 8px 16px;
+    bottom: 12px;
+  }
+
+  .pyramid-quote p {
+    font-size: 0.9rem !important;
+    /* Smaller text on mobile */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    /* Add shadow for readability without blur */
+  }
+
+  /* General Mobile Adjustments */
+  h1 {
+    font-size: 2.5rem !important;
+    /* Override inline styles if any, or class styles */
+  }
+
+  .glass-card {
+    padding: 20px;
+    /* Reduced padding */
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
+
+.blog-meta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.8;
+}
+
+.blog-meta span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.blog-tag {
+  background: var(--bg-subtle);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-left: 8px;
+}
+
+/* Single Post Styles */
+.post-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.post-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  /* Large title like Medium */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.post-content {
+  font-family: 'Inter', serif;
+  /* Medium uses serif for body text often, but Inter is fine too. Maybe standard font. */
+  font-size: 1.125rem;
+  /* 18px */
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  font-family: 'Outfit', sans-serif;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.post-content p {
+  margin-bottom: 24px;
+}
+
+.post-content a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+  transition: color 0.2s;
+}
+
+.post-content a:hover {
+  color: var(--accent);
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 20px;
+  margin: 32px 0;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 32px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-content code {
+  background: var(--bg-subtle);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+.post-content pre {
+  background: var(--bg-subtle);
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 32px 0;
+  border: 1px solid var(--card-border);
+}
+
+.post-content pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: 0.9rem;
 }

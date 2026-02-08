@@ -15,9 +15,12 @@
     "three": "^0.160.0"
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "gray-matter": "^4.0.3"
   },
   "scripts": {
+    "prestart": "node scripts/generate-posts.js",
+    "prebuild": "node scripts/generate-posts.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
