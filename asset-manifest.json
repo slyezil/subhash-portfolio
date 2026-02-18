@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/subhash-portfolio/static/css/main.8a34cac7.css",
-    "main.js": "/subhash-portfolio/static/js/main.57a58618.js",
+    "main.css": "/subhash-portfolio/static/css/main.e82e705d.css",
+    "main.js": "/subhash-portfolio/static/js/main.f2838a05.js",
     "static/media/postgresql.png": "/subhash-portfolio/static/media/postgresql.7a61ca6d9cde9ac92790.png",
     "static/media/springboot.png": "/subhash-portfolio/static/media/springboot.0d2864a8d31b36e39fb1.png",
     "static/media/react.png": "/subhash-portfolio/static/media/react.b9a14f34c7e7ac1b8ed6.png",
@@ -9,11 +9,11 @@
     "static/media/java.png": "/subhash-portfolio/static/media/java.cbf62ddb95767b110f79.png",
     "static/media/nodejs.png": "/subhash-portfolio/static/media/nodejs.15e2e80ee971b4ebe266.png",
     "index.html": "/subhash-portfolio/index.html",
-    "main.8a34cac7.css.map": "/subhash-portfolio/static/css/main.8a34cac7.css.map",
-    "main.57a58618.js.map": "/subhash-portfolio/static/js/main.57a58618.js.map"
+    "main.e82e705d.css.map": "/subhash-portfolio/static/css/main.e82e705d.css.map",
+    "main.f2838a05.js.map": "/subhash-portfolio/static/js/main.f2838a05.js.map"
   },
   "entrypoints": [
-    "static/css/main.8a34cac7.css",
-    "static/js/main.57a58618.js"
+    "static/css/main.e82e705d.css",
+    "static/js/main.f2838a05.js"
   ]
 }
