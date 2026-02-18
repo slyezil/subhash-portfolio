@@ -5,19 +5,21 @@ import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   return (
-    <header className="header container">
-      <div>
-        <div className="name">{SITE.name}</div>
-        <div style={{ color: 'var(--muted)' }}>{SITE.title}</div>
+    <header className="glass-header">
+      <div className="container header-content">
+        <div>
+          <div className="name">{SITE.name}</div>
+          <div style={{ color: 'var(--muted)' }}>{SITE.title}</div>
+        </div>
+        <nav className="nav">
+          <Link className="link" to="/">Home</Link>
+          <Link className="link" to="/blog">Blog</Link>
+          <a className="link" href={SITE.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a className="link" href={`mailto:${SITE.email}`}>Email</a>
+          <a className="link" href={SITE.resume} download target="_blank" rel="noopener noreferrer"> Download Resume</a>
+          <ThemeToggle />
+        </nav>
       </div>
-      <nav className="nav">
-        <Link className="link" to="/">Home</Link>
-        <Link className="link" to="/blog">Blog</Link>
-        <a className="link" href={SITE.github} target="_blank" rel="noreferrer">GitHub</a>
-        <a className="link" href={`mailto:${SITE.email}`}>Email</a>
-        <a className="link" href={SITE.resume} download target="_blank"rel="noopener noreferrer"> Download Resume</a>
-        <ThemeToggle />
-      </nav>
     </header>
   );
 }

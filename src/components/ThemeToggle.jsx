@@ -13,7 +13,7 @@ export default function ThemeToggle() {
       aria-label={`Activate ${nextTheme} mode`}
     >
       {theme === "dark" ? "☀" : "🌙"}
-      <span style={{ fontSize: '0.85rem' }}>{theme === "dark" ? "Light" : "Dark"}</span>
+      <span className="hidden-mobile" style={{ fontSize: '0.85rem' }}>{theme === "dark" ? "Light" : "Dark"}</span>
     </button>
   );
 }

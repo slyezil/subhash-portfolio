@@ -49,7 +49,7 @@ export default function Home() {
               <FuturisticHero />
             </div>
             <div style={{ padding: '40px' }}>
-              <h1 className="text-gradient" style={{ fontSize: '4.5rem', marginBottom: '8px', lineHeight: 1 }}>{SITE.name}</h1>
+              <h1 className="text-gradient hero-title">{SITE.name}</h1>
               <h2 style={{ fontSize: '1.5rem', color: 'var(--accent)', marginBottom: '24px', fontWeight: 600 }}>{SITE.title}</h2>
               <p style={{ fontSize: '1.15rem', color: 'var(--text-muted)', lineHeight: '1.7', maxWidth: '800px' }}>
                 {SITE.bio}
