@@ -4,15 +4,13 @@ const STORAGE_KEY = "theme";
 
 export default function useTheme() {
   const [theme, setThemeState] = useState(() => {
-    if (typeof window === "undefined") return "dark";
+    if (typeof window === "undefined") return "light";
 
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
 
-    const prefersDark = window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    return prefersDark ? "dark" : "light";
+    // Default to light theme specifically as requested by user
+    return "light";
   });
 
   // Keep all hook instances in sync when theme changes anywhere
