@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/subhash-portfolio/static/css/main.68226b63.css",
-    "main.js": "/subhash-portfolio/static/js/main.60fe4db0.js",
+    "main.js": "/subhash-portfolio/static/js/main.9b47332b.js",
     "static/media/postgresql.png": "/subhash-portfolio/static/media/postgresql.7a61ca6d9cde9ac92790.png",
     "static/media/springboot.png": "/subhash-portfolio/static/media/springboot.0d2864a8d31b36e39fb1.png",
     "static/media/react.png": "/subhash-portfolio/static/media/react.b9a14f34c7e7ac1b8ed6.png",
@@ -10,10 +10,10 @@
     "static/media/nodejs.png": "/subhash-portfolio/static/media/nodejs.15e2e80ee971b4ebe266.png",
     "index.html": "/subhash-portfolio/index.html",
     "main.68226b63.css.map": "/subhash-portfolio/static/css/main.68226b63.css.map",
-    "main.60fe4db0.js.map": "/subhash-portfolio/static/js/main.60fe4db0.js.map"
+    "main.9b47332b.js.map": "/subhash-portfolio/static/js/main.9b47332b.js.map"
   },
   "entrypoints": [
     "static/css/main.68226b63.css",
-    "static/js/main.60fe4db0.js"
+    "static/js/main.9b47332b.js"
   ]
 }
