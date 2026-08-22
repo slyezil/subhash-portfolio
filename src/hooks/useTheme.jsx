@@ -1,52 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-const STORAGE_KEY = "theme";
+const STORAGE_KEY = 'theme';
+
+function getInitialTheme() {
+  if (typeof window === 'undefined') return 'dark';
+  const stored = window.localStorage.getItem(STORAGE_KEY);
+  if (stored === 'light' || stored === 'dark') return stored;
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    return 'light';
+  }
+  return 'dark';
+}
 
 export default function useTheme() {
-  const [theme, setThemeState] = useState(() => {
-    if (typeof window === "undefined") return "light";
+  const [theme, setThemeState] = useState(getInitialTheme);
 
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "light" || stored === "dark") return stored;
-
-    // Default to light theme specifically as requested by user
-    return "light";
-  });
-
-  // Keep all hook instances in sync when theme changes anywhere
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     const handler = (event) => {
       const next = event.detail;
-      if (next === "light" || next === "dark") {
+      if (next === 'light' || next === 'dark') {
         setThemeState(next);
       }
     };
-
-    window.addEventListener("theme-change", handler);
-    return () => window.removeEventListener("theme-change", handler);
+    window.addEventListener('theme-change', handler);
+    return () => window.removeEventListener('theme-change', handler);
   }, []);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.dataset.theme = theme;
+    document.documentElement.dataset.theme = theme;
     window.localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
   const setTheme = (value) => {
     setThemeState(value);
-
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("theme-change", {
-          detail: value,
-        })
-      );
-    }
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: value }));
   };
 
   return { theme, setTheme };
 }
-
-

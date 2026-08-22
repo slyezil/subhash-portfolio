@@ -1,134 +1,204 @@
-import React, { useEffect, useState } from 'react';
+﻿import { Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
-import FuturisticHero from '../components/FuturisticHero';
-import SpinningPyramids from '../components/SpinningPyramids';
-import FloatingNodes from '../components/FloatingNodes';
-import Header from '../components/Header';
+import { SITE, SKILL_ICONS } from '../data/siteConfig';
+import { PROJECTS } from '../data/projects';
+import useTypewriter from '../hooks/useTypewriter';
+import useCountUp from '../hooks/useCountUp';
 import ProjectCard from '../components/ProjectCard';
-import { SITE } from '../data/siteConfig';
+import DigitalRain from '../components/DigitalRain';
+import ChapterRail from '../components/ChapterRail';
 
-const PROJECTS = [
-  { title: 'AgentFlow', desc: 'A sophisticated Java memory layer enabling stateful conversations with local LLMs.', link: '/post/building-agentflow', tags: ['Java', 'AI'] },
-  { title: 'SyncSpace', desc: 'Real-time collaborative workspace using Operational Transformation and WebSockets.', link: '#', tags: ['React', 'Node.js'] },
-  { title: 'VectorVault', desc: 'Custom vector indexing system for high-performance RAG implementations.', link: '#', tags: ['Python', 'Vector DB'] }
-];
+const SpinningPyramids = lazy(() => import('../components/SpinningPyramids'));
+const FloatingNodes = lazy(() => import('../components/FloatingNodes'));
+
+const HOOK = 'I turn raw logic into living systems.';
+const STORY_BIO =
+  'From algorithmic ladders to LLM memory layers — this is the record of an engineer turning pure logic into products people can touch. Scroll to read it chapter by chapter.';
+
+function StageFallback({ height }) {
+  return (
+    <div className="stage-skeleton" style={{ '--stage-h': `${height}px` }} aria-hidden="true">
+      <span className="mono">◢◤ LOADING RIG ◥◣</span>
+    </div>
+  );
+}
 
 export default function Home() {
-  const [cfRating, setCfRating] = useState(0);
-
-  useEffect(() => {
-    const target = 1683;
-    const duration = 1500;
-    const cycle = 5000;
-
-    const start = Date.now();
-    const id = setInterval(() => {
-      const elapsed = Date.now() - start;
-      const phase = elapsed % cycle;
-
-      if (phase <= duration) {
-        const progress = phase / duration;
-        setCfRating(Math.round(target * progress));
-      } else {
-        setCfRating(target);
-      }
-    }, 50);
-
-    return () => clearInterval(id);
-  }, []);
+  const typed = useTypewriter(SITE.roles);
+  const [ratingRef, rating] = useCountUp(SITE.stats.rating);
 
   return (
-    <div style={{ paddingBottom: '100px' }}>
-      <Header />
-
-      <main className="container">
-        {/* Hero Section */}
-        <section className="animate-in" style={{ marginTop: '60px' }}>
-          <div className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
-            <div style={{ width: '100%', borderBottom: '1px solid var(--card-border)' }}>
-              <FuturisticHero />
-            </div>
-            <div style={{ padding: '40px' }}>
-              <h1 className="text-gradient hero-title">{SITE.name}</h1>
-              <h2 style={{ fontSize: '1.5rem', color: 'var(--accent)', marginBottom: '24px', fontWeight: 600 }}>{SITE.title}</h2>
-              <p style={{ fontSize: '1.15rem', color: 'var(--text-muted)', lineHeight: '1.7', maxWidth: '800px' }}>
-                {SITE.bio}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Skills Section */}
-        <section className="animate-in" style={{ animationDelay: '0.1s' }}>
-          <h2 className="section-title">Technical Expertise</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-            {SITE.skillCategories.map((cat, i) => (
-              <div key={i} className="glass-card" style={{ margin: 0 }}>
-                <h3 style={{ fontSize: '1.1rem', color: 'var(--accent)', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{cat.name}</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                  {cat.skills.map((skill, j) => (
-                    <span key={j} className="badge">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 3D Interlude 1: Floating Nodes */}
-        <section className="animate-in" style={{ animationDelay: '0.2s' }}>
-          <div className="glass-card" style={{ padding: 0, overflow: 'hidden', background: 'radial-gradient(circle at center, var(--bg-subtle) 0%, var(--bg) 100%)' }}>
-            <FloatingNodes height={450} />
-          </div>
-        </section>
-
-        {/* Codeforces / Stats */}
-        <section className="animate-in" style={{ animationDelay: '0.3s' }}>
-          <h2 className="section-title">Competitive Programming</h2>
-          <div className="glass-card" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', gap: '40px', textAlign: 'center' }}>
-            <div>
-              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '8px' }}>Codeforces Rating</div>
-              <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--accent)' }}>{cfRating}</div>
-              <a className="link" href={SITE.codeforces} target="_blank" rel="noopener noreferrer" style={{ marginTop: '12px', display: 'inline-block' }}>
-                View Profile →
+    <div className="home">
+      <ChapterRail />
+      <section className="section hero animate-in" aria-label="Introduction">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <p className="whoami mono">{SITE.name}</p>
+            <h1 className="glitch story-hook" data-text={HOOK.toUpperCase()}>
+              {HOOK.toUpperCase()}
+            </h1>
+            <p className="hero-typed mono">
+              <span className="prompt" aria-hidden="true">&gt;_</span> {typed}
+              <span className="caret" aria-hidden="true">▌</span>
+            </p>
+            <p className="hero-bio">{STORY_BIO}</p>
+            <div className="hero-cta">
+              <a className="btn btn-primary" href="#origin">
+                Begin the story
+              </a>
+              <a className="btn" href={SITE.resume} download target="_blank" rel="noopener noreferrer">
+                Resume.pdf
+              </a>
+              <a className="btn" href={SITE.socials.github} target="_blank" rel="noreferrer">
+                GitHub ↗
               </a>
             </div>
-            <div>
-              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '8px' }}>Global Rank</div>
-              <div style={{ fontSize: '3rem', fontWeight: 800 }}>Top 5%</div>
-            </div>
           </div>
-        </section>
-
-
-
-        {/* Projects */}
-        <section className="animate-in" style={{ animationDelay: '0.5s' }}>
-          <h2 className="section-title">Selected Works</h2>
-          <div className="projects-grid">
-            {PROJECTS.map((p, i) => (
-              <div key={i} className="glass-card project-card" style={{ margin: 0 }}>
-                <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-                  {p.tags.map((tag, idx) => (
-                    <span key={idx} style={{ fontSize: '0.7rem', color: 'var(--text-muted)', border: '1px solid var(--card-border)', padding: '2px 8px', borderRadius: '4px' }}>{tag}</span>
-                  ))}
-                </div>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '12px' }}>{p.title}</h3>
-                <p style={{ color: 'var(--text-muted)', marginBottom: '24px', lineHeight: '1.6', fontSize: '0.95rem' }}>{p.desc}</p>
-                <div style={{ marginTop: 'auto' }}>
-                  {p.link.startsWith('/') ? (
-                    <Link className="link accent-link" to={p.link}>View Project Case Study →</Link>
-                  ) : (
-                    <a className="link accent-link" href={p.link} target={p.link !== '#' ? "_blank" : undefined} rel={p.link !== '#' ? "noopener noreferrer" : undefined}>Explore Project →</a>
-                  )}
-                </div>
-              </div>
-            ))}
+          <div className="hero-stage">
+            <Suspense fallback={<StageFallback height={360} />}>
+              <SpinningPyramids height={360} quote={SITE.tagline} />
+            </Suspense>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      <div className="rain-divider" aria-hidden="true">
+        <DigitalRain height={110} />
+      </div>
+
+      <section id="origin" className="section animate-in" aria-label="Chapter one, competitive programming">
+        <header className="section-head">
+          <span className="mono">//CH.01</span>
+          <h2 className="section-title">The Origin</h2>
+        </header>
+        <p className="section-story">
+          Before frameworks, there were problems. Hundreds of them — graph traversals at 2 AM,
+          DP tables until the logic finally clicked. Competitive programming forged the
+          algorithmic core that everything else in this story runs on.
+        </p>
+        <div className="stats-row">
+          <div className="hud-card stat-tile" ref={ratingRef}>
+            <div className="stat-label mono">CODEFORCES_RATING</div>
+            <div className="stat-value cyan">{rating}</div>
+            <a
+              className="stat-sub mono"
+              href={SITE.socials.codeforces}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SPECIALIST // PROFILE ↗
+            </a>
+          </div>
+          <div className="hud-card stat-tile">
+            <div className="stat-label mono">GLOBAL_RANK</div>
+            <div className="stat-value magenta">{SITE.stats.rank.toUpperCase()}</div>
+            <div className="stat-sub mono">ACROSS GLOBAL CONTESTS</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="craft" className="section animate-in" aria-label="Chapter two, technical expertise">
+        <header className="section-head">
+          <span className="mono">//CH.02</span>
+          <h2 className="section-title">The Craft</h2>
+        </header>
+        <p className="section-story">
+          Problems taught me to think; systems taught me to build. Spring Boot backends that
+          scale, React frontends that feel instant — and the database and deployment tooling
+          that keeps both of them honest.
+        </p>
+        <div className="skills-grid">
+          {SITE.skillCategories.map((cat) => (
+            <article key={cat.name} className="hud-card skill-card">
+              <h3 className="skill-cat mono">[{cat.name.toUpperCase()}]</h3>
+              <ul className="skill-list">
+                {cat.skills.map((skill) => (
+                  <li key={skill} className="skill-badge">
+                    {SKILL_ICONS[skill] && (
+                      <img src={SKILL_ICONS[skill]} alt="" width="18" height="18" loading="lazy" />
+                    )}
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="frontier" className="section animate-in" aria-label="Chapter three, beyond the stack">
+        <header className="section-head">
+          <span className="mono">//CH.03</span>
+          <h2 className="section-title">The Frontier</h2>
+        </header>
+        <p className="section-story">
+          Frontend craft is one stop on the map, not the destination. The same hands that build
+          physics-driven interfaces also train small language models and finetune them for
+          specific business use cases — the frontier is where product, code and ML converge.
+        </p>
+        <div className="frontier-grid">
+          <div className="hud-card nodes-panel">
+            <Suspense fallback={<StageFallback height={430} />}>
+              <FloatingNodes height={430} />
+            </Suspense>
+          </div>
+          <article className="hud-card ml-card">
+            <h3 className="skill-cat mono">[Applied_ML]</h3>
+            <p className="ml-copy">
+              Beyond the interface: I train small language models and finetune them for specific
+              business use cases — compact, private models shaped around real company workflows
+              instead of generic chatbots.
+            </p>
+            <ul className="skill-list">
+              <li className="skill-badge">SLM Training</li>
+              <li className="skill-badge">Model Finetuning</li>
+              <li className="skill-badge">Business-Specific Tuning</li>
+              <li className="skill-badge">Local LLM Systems</li>
+            </ul>
+            <Link className="proj-link mono ml-link" to="/post/building-agentflow">
+              See it applied <span aria-hidden="true">→</span>
+            </Link>
+          </article>
+        </div>
+      </section>
+
+      <section id="works" className="section animate-in" aria-label="Chapter four, selected works">
+        <header className="section-head">
+          <span className="mono">//CH.04</span>
+          <h2 className="section-title">The Works</h2>
+        </header>
+        <p className="section-story">
+          Theory became artifacts. Each project below started as a question I couldn&apos;t let
+          go of — and ended as a system running in production.
+        </p>
+        <div className="works-grid">
+          {PROJECTS.map((p) => (
+            <ProjectCard key={p.id} project={p} />
+          ))}
+        </div>
+      </section>
+
+      <section id="epilogue" className="section epilogue animate-in" aria-label="Epilogue and contact">
+        <div className="hud-card epi-panel">
+          <p className="epi-kicker mono">//EPILOGUE</p>
+          <h2 className="glitch epi-title" data-text="YOUR MOVE.">
+            YOUR MOVE.
+          </h2>
+          <p className="epi-copy">
+            Every system ships; every story continues. If you&apos;re building something
+            ambitious and need an engineer who cares about both the algorithm and the
+            experience — I&apos;d love to hear about it.
+          </p>
+          <div className="hero-cta center">
+            <a className="btn btn-primary" href={`mailto:${SITE.socials.email}`}>
+              Start a conversation
+            </a>
+            <a className="btn" href={SITE.socials.github} target="_blank" rel="noreferrer">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

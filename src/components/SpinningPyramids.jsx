@@ -1,100 +1,94 @@
-import React, { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import * as THREE from "three";
-import useTheme from "../hooks/useTheme";
+import { useEffect, useMemo, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
+import useTheme from '../hooks/useTheme';
 
-function Pyramid({ inverted = false, color = "#d4af37" }) {
+const REDUCED =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function Pyramid({ inverted = false, color, edge, speed }) {
   const groupRef = useRef();
 
-  useFrame((_, delta) => {
-    if (groupRef.current) groupRef.current.rotation.y += delta * 0.8;
-  });
+  const coneGeo = useMemo(() => new THREE.ConeGeometry(0.72, 0.95, 4), []);
+  const edgeGeo = useMemo(() => new THREE.EdgesGeometry(coneGeo), [coneGeo]);
 
-  // Create wireframe geometry for decorative edges (shorter height for rhombus look)
-  const wireframeGeometry = useMemo(() => {
-    return new THREE.ConeGeometry(0.7, 0.9, 4);
-  }, []);
+  useEffect(
+    () => () => {
+      coneGeo.dispose();
+      edgeGeo.dispose();
+    },
+    [coneGeo, edgeGeo]
+  );
+
+  useFrame((state, delta) => {
+    if (!groupRef.current || REDUCED) return;
+    groupRef.current.rotation.y += delta * speed;
+    const baseY = inverted ? -0.52 : 0.52;
+    groupRef.current.position.y =
+      baseY + Math.sin(state.clock.elapsedTime * 1.2 + (inverted ? Math.PI : 0)) * 0.05;
+  });
 
   return (
     <group
       ref={groupRef}
       rotation={[inverted ? Math.PI : 0, 0, 0]}
-      position={[0, inverted ? -0.47 : 0.47, 0]}
+      position={[0, inverted ? -0.52 : 0.52, 0]}
     >
-      {/* Main pyramid mesh */}
-      <mesh castShadow receiveShadow>
-        <coneGeometry args={[0.7, 0.9, 4]} />
+      <mesh geometry={coneGeo} castShadow>
         <meshStandardMaterial
           color={color}
-          metalness={0.7}
-          roughness={0.25}
+          emissive={color}
+          emissiveIntensity={0.55}
+          metalness={0.85}
+          roughness={0.22}
+          flatShading
         />
       </mesh>
-
-      {/* Wireframe edges */}
-      <lineSegments>
-        <edgesGeometry args={[wireframeGeometry]} />
-        <lineBasicMaterial color="#8b6914" linewidth={1.5} />
+      <lineSegments geometry={edgeGeo}>
+        <lineBasicMaterial color={edge} toneMapped={false} transparent opacity={0.9} />
       </lineSegments>
     </group>
   );
 }
 
-export default function SpinningPyramids({ width = "100%", height = 400, quote = null }) {
+export default function SpinningPyramids({ height = 380, quote = null }) {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
-  const accentColor = isDark ? "#38bdf8" : "#0284c7";
-  const edgeColor = isDark ? "#0ea5e9" : "#0369a1";
+  const core = isDark ? '#00e5ff' : '#0077b6';
+  const edge = isDark ? '#ff2bd6' : '#c9008f';
 
   return (
     <div
+      className="pyramid-stage"
       style={{
-        width,
-        height,
-        borderRadius: 24,
-        overflow: "hidden",
-        background: "var(--bg-subtle)",
-        position: "relative",
+        '--stage-h': `${height}px`,
+        background: `radial-gradient(circle at 50% 42%, ${isDark ? '#0a1030' : '#dbe6ff'} 0%, transparent 62%)`
       }}
     >
       <Canvas
-        shadows
-        camera={{ position: [0, 1.5, 4], fov: 45 }}
+        dpr={[1, 1.75]}
+        camera={{ position: [0, 0.7, 4.3], fov: 42 }}
+        gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={isDark ? 0.8 : 1.5} />
-        <directionalLight
-          position={[3, 4, 0.5]}
-          intensity={1.4}
-          castShadow
-        />
-
-        <group>
-          <Pyramid color={accentColor} />
-          <Pyramid inverted color={accentColor} />
-        </group>
-
-        <OrbitControls enablePan={false} enableZoom={false} autoRotate />
+        <ambientLight intensity={isDark ? 0.5 : 0.9} />
+        <pointLight position={[4, 4, 4]} intensity={isDark ? 40 : 22} color="#00e5ff" distance={25} decay={2} />
+        <pointLight position={[-4, -3, 3]} intensity={isDark ? 32 : 16} color="#ff2bd6" distance={20} decay={2} />
+        <directionalLight position={[2, 5, 2]} intensity={isDark ? 0.7 : 1.1} castShadow />
+        <Pyramid color={core} edge={edge} speed={0.85} />
+        <Pyramid inverted color={core} edge={edge} speed={-0.6} />
+        <OrbitControls enablePan={false} enableZoom={false} autoRotate={!REDUCED} autoRotateSpeed={0.9} />
       </Canvas>
 
       {quote && (
-        <div className="pyramid-quote">
-          <p
-            style={{
-              fontSize: "1.1rem",
-              fontWeight: 600,
-              fontStyle: "italic",
-              color: "var(--text)",
-              margin: 0,
-            }}
-          >
-            "{quote}"
-          </p>
-        </div>
+        <figure className="quote-chip">
+          <span className="quote-mark" aria-hidden="true">⌜</span>
+          <blockquote>{quote}</blockquote>
+          <span className="quote-mark end" aria-hidden="true">⌟</span>
+        </figure>
       )}
     </div>
   );
 }
-
-

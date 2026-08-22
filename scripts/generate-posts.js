@@ -7,7 +7,7 @@ const outputFile = path.join(__dirname, '../src/posts/postsIndex.js');
 
 function getReadingTime(content) {
     const wordsPerMinute = 200;
-    const noOfWords = content.split(/\s/g).length;
+    const noOfWords = content.split(/\s+/).filter(Boolean).length;
     const minutes = noOfWords / wordsPerMinute;
     const readTime = Math.ceil(minutes);
     return `${readTime} min read`;

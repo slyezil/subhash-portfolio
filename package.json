@@ -1,8 +1,20 @@
 {
   "name": "subhash-portfolio",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "homepage": "https://slyezil.github.io/subhash-portfolio",
+  "scripts": {
+    "predev": "node scripts/generate-posts.js",
+    "dev": "vite",
+    "prebuild": "node scripts/generate-posts.js && node scripts/generate-sitemap.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "smoke": "node scripts/smoke-render.mjs",
+    "format": "prettier --write .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "dependencies": {
     "@react-three/drei": "^9.56.4",
     "@react-three/fiber": "^8.13.7",
@@ -11,32 +23,21 @@
     "react-ga4": "^2.1.0",
     "react-markdown": "^8.0.7",
     "react-router-dom": "^6.30.2",
-    "react-scripts": "^5.0.1",
+    "rehype-highlight": "^6.0.0",
     "remark-gfm": "^3.0.1",
     "three": "^0.160.0"
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0",
-    "gray-matter": "^4.0.3"
-  },
-  "scripts": {
-    "prestart": "node scripts/generate-posts.js",
-    "prebuild": "node scripts/generate-posts.js",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@eslint/js": "^9.10.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^9.10.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "gh-pages": "^6.1.1",
+    "globals": "^15.9.0",
+    "gray-matter": "^4.0.3",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.8"
   }
 }
