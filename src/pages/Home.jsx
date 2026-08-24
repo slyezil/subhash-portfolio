@@ -7,6 +7,7 @@ import useCountUp from '../hooks/useCountUp';
 import ProjectCard from '../components/ProjectCard';
 import DigitalRain from '../components/DigitalRain';
 import ChapterRail from '../components/ChapterRail';
+import NeuralNet from '../components/NeuralNet';
 
 const SpinningPyramids = lazy(() => import('../components/SpinningPyramids'));
 const FloatingNodes = lazy(() => import('../components/FloatingNodes'));
@@ -144,6 +145,7 @@ export default function Home() {
           </div>
           <article className="hud-card ml-card">
             <h3 className="skill-cat mono">[Applied_ML]</h3>
+            <NeuralNet height={240} />
             <p className="ml-copy">
               Beyond the interface: I train small language models and finetune them for specific
               business use cases — compact, private models shaped around real company workflows

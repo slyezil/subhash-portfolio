@@ -812,6 +812,30 @@ img {
   margin-bottom: 22px;
 }
 
+.nn-wrap {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--panel-code);
+  padding: 6px;
+  margin-bottom: 22px;
+}
+
+.nn-caption {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+  z-index: 1;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.nn-canvas {
+  display: block;
+  width: 100%;
+}
+
 .ml-link {
   margin-top: auto;
   align-self: flex-start;
