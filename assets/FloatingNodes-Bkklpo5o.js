@@ -1,4 +1,4 @@
-import{r as e,j as c,a as B}from"./index-ByaQuv01.js";import{_ as v,e as G,c as _,D as E,f as L,V,C as O,A as T,g as $}from"./react-three-fiber.esm-Cx9FDNhl.js";function I(a){return function(t){a.forEach(function(r){typeof r=="function"?r(t):r!=null&&(r.current=t)})}}class q extends G{constructor(t){super(t),this.onBeforeCompile=(r,u)=>{const{isWebGL2:d}=u.capabilities;r.fragmentShader=r.fragmentShader.replace("#include <output_fragment>",`
+import{r as e,j as c,a as B}from"./index-C_SA0iLE.js";import{_ as v,e as G,c as _,D as E,f as L,V,C as O,A as T,g as $}from"./react-three-fiber.esm-CjzpWhDQ.js";function I(a){return function(t){a.forEach(function(r){typeof r=="function"?r(t):r!=null&&(r.current=t)})}}class q extends G{constructor(t){super(t),this.onBeforeCompile=(r,u)=>{const{isWebGL2:d}=u.capabilities;r.fragmentShader=r.fragmentShader.replace("#include <output_fragment>",`
         ${d?"#include <output_fragment>":`#extension GL_OES_standard_derivatives : enable
 #include <output_fragment>`}
       vec2 cxy = 2.0 * gl_PointCoord - 1.0;
