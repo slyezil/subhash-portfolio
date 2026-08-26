@@ -1281,6 +1281,32 @@ a.stat-sub:hover {
   line-height: 1.7;
 }
 
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, text-shadow 0.2s;
+}
+
+.share-btn:hover,
+.share-btn:focus-visible {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  text-shadow: 0 0 8px var(--glow-cyan);
+  outline: none;
+}
+
 .post-footer {
   display: flex;
   justify-content: space-between;
