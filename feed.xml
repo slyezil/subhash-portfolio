@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Subhash Chandra Bose Lavu // Writing.Log</title>
+    <link>https://slyezil.github.io/subhash-portfolio/blog</link>
+    <description>Writing on full-stack engineering, LLMs, and building systems.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Aug 2026 14:27:23 GMT</lastBuildDate>
+    <atom:link href="https://slyezil.github.io/subhash-portfolio/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building AgentFlow: Bridging Spring Boot and Local LLMs with Context</title>
+      <link>https://slyezil.github.io/subhash-portfolio/post/building-agentflow</link>
+      <guid isPermaLink="true">https://slyezil.github.io/subhash-portfolio/post/building-agentflow</guid>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 GMT</pubDate>
+      <description>A deep dive into building a stateful conversational agent using Spring Boot and local Llama models with custom memory management.</description>
+      <category>Java</category>
+      <category>Spring Boot</category>
+      <category>LLM</category>
+      <category>Llama.cpp</category>
+      <category>AI</category>
+    </item>
+  </channel>
+</rss>
