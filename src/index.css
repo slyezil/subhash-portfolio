@@ -696,6 +696,7 @@ img {
   font-size: 0.78rem;
   border: 1px solid var(--line);
   padding: 4px 12px;
+  white-space: nowrap;
 }
 
 .hud-card {
@@ -1435,8 +1436,10 @@ a.stat-sub:hover {
     grid-template-columns: 1fr;
   }
 
-  .hero-stage {
-    order: -1;
+  /* Headline first on narrow screens; the 3D stage follows, shorter. */
+  .hero-stage .pyramid-stage,
+  .hero-stage .stage-skeleton {
+    height: 280px;
   }
 
   .section {
@@ -1489,8 +1492,67 @@ a.stat-sub:hover {
     align-items: flex-start;
   }
 
+  /* Content-sized basis: buttons share a row when they fit, else stack. */
+  .hero-cta .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    padding-left: 12px;
+    padding-right: 12px;
+    letter-spacing: 0.12em;
+  }
+
+  .quote-chip {
+    width: calc(100% - 24px);
+    max-width: none;
+    justify-content: center;
+    padding: 8px 12px;
+  }
+
+  .quote-chip blockquote {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .nodes-copy {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .nodes-copy h2 {
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
+  }
+
+  .nodes-stage {
+    height: 340px;
+  }
+
+  .page-shell {
+    padding-top: 80px;
+  }
+
+  .post-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .post-content h2 {
+    font-size: 1.2rem;
+  }
+
   body::after {
     display: none;
+  }
+}
+
+/* On touch screens, vertical swipes over the 3D canvases scroll the page
+   instead of being captured by the drag-to-rotate controls. */
+@media (hover: none) {
+  .pyramid-stage canvas,
+  .nodes-stage canvas {
+    touch-action: pan-y !important;
   }
 }
 

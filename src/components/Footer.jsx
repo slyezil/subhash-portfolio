@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container footer-inner mono">
         <div className="footer-left">
-          <span>© {year} {SITE.name.toUpperCase()}</span>
+          <span>© {year}</span>
         </div>
         <nav className="footer-links" aria-label="Social links">
           <a href={SITE.socials.github} target="_blank" rel="noreferrer">GITHUB</a>

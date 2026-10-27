@@ -16,9 +16,9 @@ export const PROJECTS = [
   },
   {
     id: '03',
-    title: 'VectorVault',
-    desc: 'Custom vector indexing system for high-performance RAG implementations.',
-    link: '#',
-    tags: ['Python', 'Vector DB']
+    title: 'goSysOne',
+    desc: 'A Go runtime embedding a System One decision model, so robots act on calibrated probabilities instead of if/else rules.',
+    link: '/post/system-one-decisions-for-robots',
+    tags: ['Go', 'Robotics']
   }
 ];

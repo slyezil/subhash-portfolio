@@ -2,7 +2,6 @@
 import { Link } from 'react-router-dom';
 import { SITE, SKILL_ICONS } from '../data/siteConfig';
 import { PROJECTS } from '../data/projects';
-import useTypewriter from '../hooks/useTypewriter';
 import useCountUp from '../hooks/useCountUp';
 import ProjectCard from '../components/ProjectCard';
 import DigitalRain from '../components/DigitalRain';
@@ -25,30 +24,21 @@ function StageFallback({ height }) {
 }
 
 export default function Home() {
-  const typed = useTypewriter(SITE.roles);
   const [ratingRef, rating] = useCountUp(SITE.stats.rating);
 
   return (
-    <div className="home">
+    <div className="home container">
       <ChapterRail />
       <section className="section hero animate-in" aria-label="Introduction">
         <div className="hero-grid">
           <div className="hero-copy">
-            <p className="whoami mono">{SITE.name}</p>
             <h1 className="glitch story-hook" data-text={HOOK.toUpperCase()}>
               {HOOK.toUpperCase()}
             </h1>
-            <p className="hero-typed mono">
-              <span className="prompt" aria-hidden="true">&gt;_</span> {typed}
-              <span className="caret" aria-hidden="true">▌</span>
-            </p>
             <p className="hero-bio">{STORY_BIO}</p>
             <div className="hero-cta">
               <a className="btn btn-primary" href="#origin">
                 Begin the story
-              </a>
-              <a className="btn" href={SITE.resume} download target="_blank" rel="noopener noreferrer">
-                Resume.pdf
               </a>
               <a className="btn" href={SITE.socials.github} target="_blank" rel="noreferrer">
                 GitHub ↗

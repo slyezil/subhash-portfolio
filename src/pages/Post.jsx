@@ -46,7 +46,7 @@ export default function Post() {
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description || post.title} />
         <meta property="og:url" content={postUrl} />
-        <meta property="og:site_name" content="Subhash Chandra Bose Lavu" />
+        <meta property="og:site_name" content="Portfolio" />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={post.title} />

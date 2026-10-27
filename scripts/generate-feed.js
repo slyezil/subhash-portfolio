@@ -6,7 +6,7 @@ const postsDirectory = path.join(__dirname, '../src/posts');
 const outputFile = path.join(__dirname, '../public/feed.xml');
 
 const SITE_URL = 'https://slyezil.github.io/subhash-portfolio';
-const SITE_TITLE = 'Subhash Chandra Bose Lavu // Writing.Log';
+const SITE_TITLE = 'Writing.Log';
 const SITE_DESC = 'Writing on full-stack engineering, LLMs, and building systems.';
 
 function getPosts() {

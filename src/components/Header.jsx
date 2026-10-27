@@ -10,10 +10,6 @@ export default function Header() {
       <div className="container header-content">
         <Link to="/" className="brand" aria-label="Home">
           <span className="brand-glyph" aria-hidden="true">◢◤</span>
-          <span className="brand-text">
-            <span className="brand-name">{SITE.name}</span>
-            <span className="brand-role mono">{SITE.title}</span>
-          </span>
         </Link>
         <nav className="nav" aria-label="Primary navigation">
           <NavLink to="/" end className={navClass}>

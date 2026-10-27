@@ -4,14 +4,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Subhash Chandra Bose Lavu // Full Stack Engineer</title>
+  <title>Portfolio</title>
   <script>
     (function () {
       try {
-        var t = localStorage.getItem('theme');
-        if (t !== 'light' && t !== 'dark') {
-          t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        }
+        var t = localStorage.getItem('theme-choice');
+        if (t !== 'light' && t !== 'dark') t = 'dark';
         document.documentElement.setAttribute('data-theme', t);
       } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
     }());
@@ -27,28 +25,27 @@
     }(window.location));
   </script>
   <meta name="description"
-    content="Portfolio of Subhash Chandra Bose Lavu — full-stack engineer building scalable Java/Spring Boot backends, immersive 3D frontends and LLM-powered systems." />
+    content="Scalable Java/Spring Boot backends, immersive 3D frontends and LLM-powered systems." />
   <meta name="author" content="Subhash Chandra Bose Lavu" />
   <meta name="theme-color" content="#04050c" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="canonical" href="https://slyezil.github.io/subhash-portfolio/" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Subhash Chandra Bose Lavu" />
-  <meta property="og:title" content="Subhash Chandra Bose Lavu // Full Stack Engineer" />
+  <meta property="og:site_name" content="Portfolio" />
+  <meta property="og:title" content="Portfolio" />
   <meta property="og:description"
-    content="Full-stack engineer building scalable backends, immersive 3D frontends and LLM-powered systems." />
+    content="Scalable backends, immersive 3D frontends and LLM-powered systems." />
   <link rel="alternate" type="application/rss+xml" title="Writing.Log" href="https://slyezil.github.io/subhash-portfolio/feed.xml" />
   <meta property="og:url" content="https://slyezil.github.io/subhash-portfolio/" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Subhash Chandra Bose Lavu // Full Stack Engineer" />
+  <meta name="twitter:title" content="Portfolio" />
   <meta name="twitter:description"
-    content="Full-stack engineer building scalable backends, immersive 3D frontends and LLM-powered systems." />
+    content="Scalable backends, immersive 3D frontends and LLM-powered systems." />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Subhash Chandra Bose Lavu",
-      "jobTitle": "Full Stack Engineer",
       "url": "https://slyezil.github.io/subhash-portfolio/",
       "email": "mailto:lavuscb@gmail.com",
       "sameAs": [

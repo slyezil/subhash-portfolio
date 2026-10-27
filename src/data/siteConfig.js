@@ -17,9 +17,6 @@ export const SKILL_ICONS = {
 };
 
 export const SITE = {
-  name: 'Subhash Chandra Bose Lavu',
-  title: 'Full Stack Engineer',
-  roles: ['FULL-STACK ENGINEER', 'SPRING BOOT ARCHITECT', 'APPLIED-ML ENGINEER', 'CREATIVE TECHNOLOGIST'],
   bio: 'A developer focused on building scalable backends and immersive frontends. Expert in Java/Spring Boot and React, with a strong foundation in algorithmic problem solving and performance optimization.',
   tagline: 'Where logic meets creativity, innovation follows.',
   skillCategories: [
