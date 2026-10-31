@@ -78,9 +78,9 @@ The post index is regenerated automatically on `dev`/`build`.
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds and publishes via
-GitHub Actions (requires Pages source set to **GitHub Actions** in repo settings).
-Manual alternative: `npm run deploy` (gh-pages branch).
+Deploys are manual: `npm run deploy` builds and pushes `dist/` to the `gh-pages` branch,
+which GitHub Pages serves. Put `VITE_GA_ID` in `.env.production.local` first, otherwise the
+deployed site ships without analytics (it's only loaded for builds, so dev visits aren't tracked).
 
 ## Project Structure
 
