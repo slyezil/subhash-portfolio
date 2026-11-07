@@ -1575,3 +1575,555 @@ a.stat-sub:hover {
     animation: none !important;
   }
 }
+
+/* =========================================================================
+   Gateway (/) — choose an interface
+   ========================================================================= */
+.gateway {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 24px 48px;
+}
+
+.gw-top {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.gw-sys {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+}
+
+.gw-inner {
+  width: 100%;
+  max-width: 960px;
+  text-align: center;
+}
+
+.gw-name {
+  font-size: clamp(1.45rem, 4.2vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+  background: linear-gradient(100deg, var(--text) 25%, var(--cyan) 70%, var(--magenta) 105%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* The glitch layers must keep their own colours, not the clipped gradient. */
+.gw-name::before,
+.gw-name::after {
+  -webkit-text-fill-color: currentColor;
+}
+
+.gw-role {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 36px;
+}
+
+.gw-sep {
+  color: var(--magenta);
+  padding: 0 4px;
+}
+
+.gw-prompt {
+  color: var(--cyan);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--glow-cyan);
+}
+
+.gw-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  text-align: left;
+}
+
+.gw-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px 28px 24px;
+  color: var(--text);
+}
+
+.gw-choice:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+.gw-idx {
+  color: var(--magenta);
+  font-size: 0.78rem;
+  text-shadow: 0 0 10px var(--glow-magenta);
+}
+
+.gw-kicker {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+}
+
+.gw-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.gw-choice:hover .gw-title,
+.gw-choice:focus-visible .gw-title {
+  color: var(--cyan);
+  text-shadow: 0 0 14px var(--glow-cyan);
+}
+
+.gw-choice--journey:hover .gw-title,
+.gw-choice--journey:focus-visible .gw-title {
+  color: var(--magenta);
+  text-shadow: 0 0 14px var(--glow-magenta);
+}
+
+.gw-choice--journey:hover {
+  border-color: var(--magenta);
+  box-shadow: 0 14px 44px -20px var(--glow-magenta);
+}
+
+.gw-choice--journey:hover::before,
+.gw-choice--journey:hover::after {
+  border-color: var(--magenta);
+}
+
+.gw-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.gw-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--cyan);
+  font-size: 0.8rem;
+}
+
+.gw-choice--journey .gw-cta {
+  color: var(--magenta);
+}
+
+.gw-cta > span[aria-hidden] {
+  transition: transform 0.25s ease;
+}
+
+.gw-choice:hover .gw-cta > span[aria-hidden] {
+  transform: translateX(5px);
+}
+
+.gw-kbd {
+  margin-left: auto;
+  font: 0.68rem/1 var(--font-mono);
+  color: var(--text-muted);
+  border: 1px solid var(--line);
+  padding: 5px 8px;
+}
+
+.gw-foot {
+  margin-top: 30px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
+
+.gw-foot a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.gw-foot a:hover {
+  color: var(--cyan);
+}
+
+/* =========================================================================
+   Minimalist (/minimal) — recruiter view
+   ========================================================================= */
+html[data-view='minimal'] body::after {
+  display: none;
+}
+
+.min {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 24px 24px 72px;
+}
+
+.min-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 44px;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+}
+
+.min-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.min-nav {
+  color: var(--text-muted);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.min-nav:hover {
+  color: var(--cyan);
+  text-shadow: 0 0 10px var(--glow-cyan);
+}
+
+.min-header {
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.min-name {
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+
+.min-role {
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.min-dot {
+  color: var(--magenta);
+  padding: 0 4px;
+}
+
+.min-summary {
+  color: var(--text);
+  max-width: 66ch;
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+}
+
+.min-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.78rem;
+}
+
+.min-links a,
+.min-print {
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.min-links a:hover,
+.min-print:hover {
+  color: var(--cyan);
+}
+
+.min-section {
+  margin-top: 40px;
+}
+
+.min-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.min-num {
+  color: var(--magenta);
+  font-size: 0.74rem;
+}
+
+.min-h2 {
+  font-size: 0.92rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.min-skills {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 22px;
+}
+
+.min-skill-row {
+  display: contents;
+}
+
+.min-skills dt {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-top: 3px;
+}
+
+.min-skills dd {
+  color: var(--text);
+}
+
+.min-item {
+  margin-bottom: 22px;
+}
+
+.min-item:last-child {
+  margin-bottom: 0;
+}
+
+.min-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 18px;
+  flex-wrap: wrap;
+}
+
+.min-item-lead strong {
+  font-weight: 700;
+}
+
+.min-org {
+  color: var(--text-muted);
+}
+
+.min-meta {
+  display: inline-flex;
+  gap: 14px;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.min-link {
+  color: var(--cyan);
+  font-size: 0.74rem;
+  transition: text-shadow 0.2s ease;
+}
+
+.min-link:hover {
+  text-shadow: 0 0 10px var(--glow-cyan);
+}
+
+.min-desc {
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.min-desc a {
+  color: var(--cyan);
+}
+
+.min-points {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--text);
+}
+
+.min-points li {
+  margin: 4px 0;
+}
+
+.min-points li::marker {
+  color: var(--magenta);
+}
+
+.min-more {
+  margin: 18px 0 0;
+  padding-left: 20px;
+  color: var(--text-muted);
+}
+
+.min-more li {
+  margin: 4px 0;
+}
+
+.min-more li::marker {
+  color: var(--magenta);
+}
+
+.min-more strong {
+  color: var(--text);
+}
+
+.min-footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+}
+
+@media (max-width: 768px) {
+  .gateway {
+    padding: 80px 18px 40px;
+  }
+
+  .gw-top {
+    right: 18px;
+  }
+
+  .gw-choices {
+    grid-template-columns: 1fr;
+  }
+
+  .gw-choice {
+    padding: 24px 20px 20px;
+  }
+
+  .min-topbar {
+    margin-bottom: 32px;
+  }
+
+  .min-topbar-right {
+    gap: 12px;
+  }
+
+  .min-skills {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .min-skills dt {
+    margin-top: 10px;
+  }
+
+  .min-skills dd {
+    margin-bottom: 4px;
+  }
+
+  .min-meta {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .min-topbar-right .min-nav {
+    display: none;
+  }
+}
+
+/* =========================================================================
+   Print — the minimalist page doubles as a résumé
+   ========================================================================= */
+@media print {
+  :root,
+  [data-theme='dark'],
+  [data-theme='light'] {
+    --bg: #fff;
+    --bg-2: #fff;
+    --panel: #fff;
+    --panel-solid: #fff;
+    --line: #cfcfcf;
+    --line-bright: #999;
+    --text: #000;
+    --text-muted: #444;
+    --cyan: #000;
+    --magenta: #000;
+    --glow-cyan: transparent;
+    --glow-magenta: transparent;
+    color-scheme: light;
+  }
+
+  body {
+    background: #fff;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  body::before,
+  body::after,
+  .no-print,
+  .hud-header,
+  .site-footer,
+  .skip-link,
+  .chapter-rail {
+    display: none !important;
+  }
+
+  .min {
+    max-width: none;
+    padding: 0;
+  }
+
+  .min-name {
+    font-size: 1.7rem;
+  }
+
+  .min-section {
+    margin-top: 20px;
+  }
+
+  .min-head {
+    break-after: avoid;
+  }
+
+  .min-skills {
+    grid-template-columns: max-content 1fr;
+    gap: 4px 18px;
+  }
+
+  .min-skills dt,
+  .min-skills dd {
+    margin: 0;
+  }
+
+  .min-item {
+    break-inside: avoid;
+    margin-bottom: 12px;
+  }
+
+  .min-links a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.68rem;
+    color: #666;
+  }
+
+  .animate-in,
+  .glitch::before,
+  .glitch::after {
+    animation: none !important;
+  }
+}

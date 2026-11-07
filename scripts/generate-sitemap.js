@@ -23,6 +23,8 @@ const posts = getPosts();
 
 const urls = [
   { loc: '/', lastmod: null, priority: '1.0' },
+  { loc: '/minimal', lastmod: null, priority: '0.9' },
+  { loc: '/journey', lastmod: null, priority: '0.9' },
   { loc: '/blog', lastmod: posts[0] ? posts[0].date : null, priority: '0.8' },
   ...posts.map((p) => ({ loc: `/post/${p.slug}`, lastmod: p.date, priority: '0.6' }))
 ];

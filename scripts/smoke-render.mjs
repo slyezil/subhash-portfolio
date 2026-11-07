@@ -7,11 +7,18 @@ import { Suspense } from 'react';
 const vite = await createServer({
   server: { middlewareMode: true },
   appType: 'custom',
+  // react-helmet-async ships an ESM entry that Node cannot load as CJS; let Vite transform it.
+  ssr: { noExternal: ['react-helmet-async'] },
   logLevel: 'error'
 });
 
+// Load through Vite so the pages and the provider share one module instance.
+const { HelmetProvider } = await vite.ssrLoadModule('react-helmet-async');
+
 const targets = [
-  ['/src/pages/Home.jsx', 'default', '/'],
+  ['/src/pages/Gateway.jsx', 'default', '/'],
+  ['/src/pages/Minimal.jsx', 'default', '/minimal'],
+  ['/src/pages/Home.jsx', 'default', '/journey'],
   ['/src/pages/Home.jsx', 'default', '/blog'],
   ['/src/pages/Blog.jsx', 'default', '/blog'],
   ['/src/pages/Post.jsx', 'default', '/post/building-agentflow'],
@@ -20,7 +27,9 @@ const targets = [
   ['/src/components/Header.jsx', 'default', '/'],
   ['/src/components/Footer.jsx', 'default', '/'],
   ['/src/components/ChapterRail.jsx', 'default', '/'],
-  ['/src/App.jsx', 'default', '/']
+  ['/src/App.jsx', 'default', '/'],
+  ['/src/App.jsx', 'default', '/minimal'],
+  ['/src/App.jsx', 'default', '/journey']
 ];
 
 let failures = 0;
@@ -40,9 +49,13 @@ for (const [file, exportName, route] of targets) {
       wrapped = React.createElement(Component);
     }
     const el = React.createElement(
-      MemoryRouter,
-      { initialEntries: [route] },
-      React.createElement(Suspense, { fallback: null }, wrapped)
+      HelmetProvider,
+      null,
+      React.createElement(
+        MemoryRouter,
+        { initialEntries: [route] },
+        React.createElement(Suspense, { fallback: null }, wrapped)
+      )
     );
     const html = renderToString(el);
     console.log(`PASS ${file} @ ${route} (${html.length} chars)`);

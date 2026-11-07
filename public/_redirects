@@ -1,0 +1,4 @@
+# Cloudflare Pages: serve the SPA shell for every path so deep links such as
+# /minimal, /journey and /post/<slug> work on hard refresh. GitHub Pages ignores
+# this file and uses 404.html instead.
+/*    /index.html   200

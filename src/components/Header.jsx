@@ -8,15 +8,18 @@ export default function Header() {
   return (
     <header className="hud-header">
       <div className="container header-content">
-        <Link to="/" className="brand" aria-label="Home">
+        <Link to="/" className="brand" aria-label="Back to the start">
           <span className="brand-glyph" aria-hidden="true">◢◤</span>
         </Link>
         <nav className="nav" aria-label="Primary navigation">
-          <NavLink to="/" end className={navClass}>
+          <NavLink to="/journey" className={navClass}>
             Home
           </NavLink>
           <NavLink to="/blog" className={navClass}>
             Blog
+          </NavLink>
+          <NavLink to="/minimal" className={navClass} title="Minimalist view for recruiters">
+            Minimal
           </NavLink>
           <a className="nav-link" href={SITE.socials.github} target="_blank" rel="noreferrer">
             GitHub
